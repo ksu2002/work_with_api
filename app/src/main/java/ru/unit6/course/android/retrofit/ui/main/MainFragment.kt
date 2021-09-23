@@ -11,9 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import okhttp3.*
 import ru.unit6.course.android.retrofit.R
-import ru.unit6.course.android.retrofit.data.model.User
 import ru.unit6.course.android.retrofit.utils.Status
 
 class MainFragment : Fragment() {
@@ -46,14 +44,13 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-
         setupUI()
         setupObservers()
     }
 
     private fun setupUI() {
         recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = MainAdapter(arrayListOf())
+        adapter = MainAdapter(arrayListOf(),activity?.supportFragmentManager)
         recyclerView.addItemDecoration(
             DividerItemDecoration(
                 recyclerView.context,
